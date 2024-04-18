@@ -1,2 +1,2 @@
-# tonics-wordpress
+# Tonics WordPress
 WordPress official image for TonicsCloud
