@@ -13,16 +13,21 @@ sudo incus exec tonics-wordpress -- bash -c "DEBIAN_FRONTEND=noninteractive apt 
 
 # Clean Debian Cache
 sudo incus exec tonics-wordpress -- bash -c "apt clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*"
+
 #
 # Fetch WordPress, extract and install to the default web root.
 #
 sudo incus exec tonics-wordpress -- bash -c "wget 'https://wordpress.org/latest.tar.gz' -O wordpress.tar.gz"
 sudo incus exec tonics-wordpress -- bash -c "rm -Rf /var/www/html/index.html wordpress"
 sudo incus exec tonics-wordpress -- bash -c "tar xvzf wordpress.tar.gz"
-sudo incus exec tonics-wordpress -- bash -c "mv wordpress/* /var/www/html/"
 
 # WordPress Version
 WordPress_Version=$(grep '$wp_version =' wordpress/wp-includes/version.php | awk -F"'" '{print $2}')
+
+# Create the target directory if it doesn't exist
+sudo incus exec tonics-wordpress -- bash -c "mkdir -p /var/www/html/"
+
+sudo incus exec tonics-wordpress -- bash -c "mv wordpress/* /var/www/html/"
 
 # Version
 Version="PHP__$(sudo incus exec tonics-wordpress -- php -v | head -n 1 | awk '{print $2}' | cut -d '-' -f 1)__WordPress__$WordPress_Version"
