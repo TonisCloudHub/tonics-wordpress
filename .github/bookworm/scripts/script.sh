@@ -22,7 +22,7 @@ sudo incus exec tonics-wordpress -- bash -c "rm -Rf /var/www/html/index.html wor
 sudo incus exec tonics-wordpress -- bash -c "tar xvzf wordpress.tar.gz"
 
 # WordPress Version
-WordPress_Version=$(grep '$wp_version =' wordpress/wp-includes/version.php | awk -F"'" '{print $2}')
+WordPress_Version=$(sudo incus exec tonics-wordpress -- grep '$wp_version =' wordpress/wp-includes/version.php | awk -F"'" '{print $2}')
 
 # Create the target directory if it doesn't exist
 sudo incus exec tonics-wordpress -- bash -c "mkdir -p /var/www/html/"
