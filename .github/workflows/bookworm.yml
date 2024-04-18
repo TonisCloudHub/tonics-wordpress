@@ -4,7 +4,7 @@ on:
     paths:
     - '.github/workflows/bookworm.yml'
   schedule:
-  - cron: '0 0 * * *' # Once EveryDay 
+  - cron: '0 0 * * *' # Once EveryDay   
 
 jobs:
   build:
