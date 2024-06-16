@@ -1,4 +1,4 @@
-name: Incus WordPress (BookWorm) Image Build
+name: Incus WordPress (BookWorm) Image Build (MariaDB 11-4)
 on:
   push: 
     paths:
