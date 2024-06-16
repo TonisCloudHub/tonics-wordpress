@@ -51,7 +51,7 @@ sudo incus exec tonics-wordpress -- bash -c "mkdir -p /var/www/wordpress/"
 sudo incus exec tonics-wordpress -- bash -c "mv wordpress/* /var/www/wordpress/"
 
 # Version
-Version="MariaDB__$(sudo incus exec tonics-wordpress -- mysql -V | awk '{print $5}' | sed 's/,//')__Nginx__$(sudo incus exec tonics-wordpress -- nginx -v |& sed 's/nginx version: nginx\///')__PHP__$(sudo incus exec tonics-wordpress -- php -v | head -n 1 | awk '{print $2}' | cut -d '-' -f 1)__WordPress__$WordPress_Version"
+Version="MariaDB__$(sudo incus exec tonics-wordpress -- mariadbd --version | awk '{print $3}' | sed 's/,//')__Nginx__$(sudo incus exec tonics-wordpress -- nginx -v |& sed 's/nginx version: nginx\///')__PHP__$(sudo incus exec tonics-wordpress -- php -v | head -n 1 | awk '{print $2}' | cut -d '-' -f 1)__WordPress__$WordPress_Version"
 
 # Publish Image
 mkdir images && sudo incus stop tonics-wordpress && sudo incus publish tonics-wordpress --alias tonics-wordpress
