@@ -2,7 +2,7 @@ name: Incus WordPress (BookWorm) Image Build
 on:
   push: 
     paths:
-    - '.github/workflows/bookworm.yml'
+    - '.github/workflows/02.bookworm-mariadb-11-4.yml'
   schedule:
   - cron: '0 0 * * *' # Once EveryDay
 
@@ -15,7 +15,7 @@ jobs:
        
       - name: Install WordPress
         run: |
-          bash .github/bookworm/scripts/script.sh
+          bash .github/bookworm/scripts/script.sh mariadb-11.4
 
       - name: Extract Tag Name
         id: extract_filename
